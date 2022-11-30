@@ -1,5 +1,5 @@
 {
-  "name": "you-take-it",
+  "name": "own-it",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -11,9 +11,11 @@
   "dependencies": {
     "@expo/webpack-config": "^0.17.0",
     "expo": "~46.0.13",
+    "expo-constants": "~13.2.4",
     "expo-status-bar": "~1.4.0",
     "react": "18.0.0",
-    "react-native": "0.69.6"
+    "react-native": "0.69.6",
+    "react-native-gesture-handler": "~2.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
