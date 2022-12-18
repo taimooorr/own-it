@@ -6,45 +6,49 @@ import {
 } from "react-native-gesture-handler";
 import AppText from './AppText'
 import colors from '../config/colors'
-export default function ListItem({ image, title, subTitle, onPress, RightActions,LeftActions}) {
+export default function ListItem({
+  title,
+  subTitle,
+  image,
+  IconComponent,
+  onPress,
+  renderRightActions,
+}) {
   return (
-    <GestureHandlerRootView>
-      <Swipeable
-        renderRightActions={RightActions}
-    > 
-      <TouchableHighlight
-        underlayColor={colors.lightGrey}
-        onPress={onPress}
-      >
+    <Swipeable renderRightActions={renderRightActions}>
+      <TouchableHighlight underlayColor={colors.light} onPress={onPress}>
         <View style={styles.container}>
-          <Image style={styles.image} source={image} />
-          <View >
+          {IconComponent}
+          {image && <Image style={styles.image} source={image} />}
+          <View style={styles.detailsContainer}>
             <AppText style={styles.title}>{title}</AppText>
-            <AppText style={styles.subtitle}>{subTitle}</AppText>
+            {subTitle && <AppText style={styles.subTitle}>{subTitle}</AppText>}
           </View>
         </View>
       </TouchableHighlight>
     </Swipeable>
-    </GestureHandlerRootView>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 8,
-    flexDirection: 'row'
+    flexDirection: "row",
+    padding: 15,
+    backgroundColor: colors.white,
+  },
+  detailsContainer: {
+    marginLeft: 10,
+    justifyContent: "center",
   },
   image: {
     width: 70,
     height: 70,
-    borderRadius: 50,
-    marginRight: 10,
+    borderRadius: 35,
+  },
+  subTitle: {
+    color: colors.medium,
   },
   title: {
-    fontWeight: 'bold',
+    fontWeight: "500",
   },
-  subtitle: {
-    color: colors.mediumGrey,
-    top: 2.5,
-  },
-})
+});
