@@ -60,7 +60,7 @@ export default function AccountScreen(props) {
 
 const styles = StyleSheet.create({
   screen: {
-    backgroundColor: colors.light,
+    backgroundColor: colors.lightGrey,
   },
   container: {
     marginVertical: 20,
