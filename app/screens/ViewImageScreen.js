@@ -1,25 +1,29 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import colors from "../config/colors";
+import Screen from "../components/Screen";
 
 function ViewImageScreen(props) {
   return (
+    
+
+
     <View style={styles.container}>
       <Image
         resizeMode="contain"
         style={styles.image}
         source={require("../assets/chair.jpg")}
       />
-      <View style={styles.closeIcon}>
+      <TouchableOpacity style={styles.closeIcon}>
         <MaterialIcons name="close" size={35} color="white" />
-      </View>
-      <View style={styles.deleteIcon}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.deleteIcon}>
         <MaterialIcons name="delete" size={35} color="white" />
+      </TouchableOpacity>
       </View>
-      
-    </View>
+    
   );
 }
 
