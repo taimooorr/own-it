@@ -1,30 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import ViewImageScreen from './app/screens/ViewImageScreen';
-import WelcomeScreen from './app/screens/WelcomeScreen';
-import Card from './app/components/Card';
-import ListingDetailsScreen from './app/screens/ListingDetailsScreen';
-import MessagesScreen from './app/screens/MessagesScreen';
-import Screen from './app/components/Screen';
-import AccountScreen from './app/screens/AccountScreen';
-import Icon from './app/components/Icon';
-import ListingScreen from './app/screens/ListingScreen';
-import AppTextInput from './app/components/AppTextInput';
-import AppPicker from './app/components/AppPicker';
-import { useState } from 'react';
+
+import { StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
 import LoginScreen from './app/screens/LoginScreen.js';
-const items = [
-  { label: 'Furniture', value: 1 },
-  { label: 'Clothing', value: 2 },
-  { label: 'Camera', value: 3 },
-]
+import RegistrationScreen from './app/screens/RegistrationScreen';
+import WelcomeScreen from './app/screens/WelcomeScreen.js';
+import AccountScreen from './app/screens/AccountScreen.js';
+
 export default function App() {
-  const [category, setCategory] = useState();
+const Stack = createNativeStackNavigator();
   return (
     <View style={styles.container}>
-      <LoginScreen />
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='WelcomeScreen'>
+          <Stack.Screen name="Own It" component={WelcomeScreen} />
+          <Stack.Screen name="LoginScreen" component={LoginScreen} />
+          <Stack.Screen name="RegistrationScreen" component={RegistrationScreen} />
+          <Stack.Screen name="AccountScreen" component={AccountScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </View>
-
   );
 }
 const styles = StyleSheet.create({
