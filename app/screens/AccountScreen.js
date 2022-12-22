@@ -7,13 +7,6 @@ import colors from '../config/colors'
 import ListItemSeparator from '../components/ListItemSeparator'
 const menuItems = [
   {
-    title: "My Listings",
-    icon: {
-      name: "format-list-bulleted",
-      backgroundColor: colors.primary,
-    },
-  },
-  {
     title: "My Messages",
     icon: {
       name: "email",
@@ -22,14 +15,14 @@ const menuItems = [
   },
 ];
 
-export default function AccountScreen(props) {
+export default function AccountScreen({route,params}) {
+  const { name ,email } = route.params;
   return (
     <Screen style={styles.screen}>
       <View style={styles.container}>
         <ListItem
-          title="Taimoor"
-          subTitle="Taimoor@gmail.com"
-          image={require("../assets/favicon.png")}
+          title={name}
+          subTitle= {email}
         />
       </View>
       <View style={styles.container}>
