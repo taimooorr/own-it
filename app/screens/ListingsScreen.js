@@ -19,6 +19,18 @@ const listings = [
     price: 1000,
     image: require("../assets/couch.jpg"),
   },
+  {
+    id: 3,
+    title: "Couch in great condition",
+    price: 1000,
+    image: require("../assets/couch.jpg"),
+  },
+  {
+    id: 4,
+    title: "Couch in great condition",
+    price: 1000,
+    image: require("../assets/couch.jpg"),
+  },
 ];
 
 function ListingsScreen({ navigation }) {
@@ -42,7 +54,9 @@ function ListingsScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   screen: {
-    padding: 20,
+    padding: 2,
+    paddingTop: 0,
+    width: "100%",
     backgroundColor: colors.light,
   },
 });
