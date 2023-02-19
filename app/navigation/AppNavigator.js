@@ -46,7 +46,6 @@ const AppNavigator = () => (
         tabBarIcon: ({ color, size }) => (
           <MaterialCommunityIcons name="account" color={color} size={size} />
         ),
-        headerShown: false,
       }}
     />
   </Tab.Navigator>
