@@ -1,5 +1,6 @@
 {
 	"cSpell.words": ["Swipeable"],
 	"files.autoSave": "afterDelay",
-	"files.autoSaveDelay": 1500
+	"files.autoSaveDelay": 1500,
+	"githubPullRequests.ignoredPullRequestBranches": ["main"]
 }
