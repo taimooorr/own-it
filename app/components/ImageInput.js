@@ -11,14 +11,13 @@ import * as ImagePicker from "expo-image-picker";
 
 import colors from "../config/colors";
 
-
-  function ImageInput({ imageUri, onChangeImage }) {
+function ImageInput({ imageUri, onChangeImage }) {
   useEffect(() => {
     requestPermission();
   }, []);
 
   const requestPermission = async () => {
-    const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    const { granted } = await ImagePicker.requestCameraRollPermissionsAsync();
     if (!granted) alert("You need to enable permission to access the library.");
   };
 
@@ -37,7 +36,7 @@ import colors from "../config/colors";
         mediaTypes: ImagePicker.MediaTypeOptions.Images,
         quality: 0.5,
       });
-      if (!result.canceled) onChangeImage(result.assets[0].uri);
+      if (!result.cancelled) onChangeImage(result.uri);
     } catch (error) {
       console.log("Error reading an image", error);
     }

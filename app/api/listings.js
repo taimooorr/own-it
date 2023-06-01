@@ -1,9 +1,10 @@
-import client from './client';
+import client from "./client";
 
-const endpoint = '/listings';
+const endpoint = "/listings";
 
 const getListings = () => client.get(endpoint);
-export const AddItem = (listing, onUploadProgress) => {
+
+export const addListing = (listing, onUploadProgress) => {
   const data = new FormData();
   data.append("title", listing.title);
   data.append("price", listing.price);
@@ -24,11 +25,10 @@ export const AddItem = (listing, onUploadProgress) => {
   return client.post(endpoint, data, {
     onUploadProgress: (progress) =>
       onUploadProgress(progress.loaded / progress.total),
-
   });
 };
 
 export default {
-  AddItem,
+  addListing,
   getListings,
 };

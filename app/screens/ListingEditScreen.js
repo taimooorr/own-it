@@ -1,7 +1,6 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import * as Yup from "yup";
-
 
 import {
   Form,
@@ -12,9 +11,8 @@ import {
 import CategoryPickerItem from "../components/CategoryPickerItem";
 import Screen from "../components/Screen";
 import FormImagePicker from "../components/forms/FormImagePicker";
-import UseLocation from "../hooks/useLocation";
-
-import listingApi from "../api/listings";
+import listingsApi from "../api/listings";
+import useLocation from "../hooks/useLocation";
 import UploadScreen from "./UploadScreen";
 
 const validationSchema = Yup.object().shape({
@@ -83,24 +81,33 @@ const categories = [
 ];
 
 function ListingEditScreen() {
-  const location = UseLocation();
+  const location = useLocation();
   const [uploadVisible, setUploadVisible] = useState(false);
   const [progress, setProgress] = useState(0);
-  const HandleSubmit = async (listings) => {
+
+  const handleSubmit = async (listing, { resetForm }) => {
+    setProgress(0);
     setUploadVisible(true);
-    const result = await listingApi.AddItem(
-      { ...listings, location },
+    const result = await listingsApi.addListing(
+      { ...listing, location },
       (progress) => setProgress(progress)
     );
-    setUploadVisible(false);
-    if (!result.ok) return console.log("Error", result);
-    alert("Success");
+
+    if (!result.ok) {
+      setUploadVisible(false);
+      return alert("Could not save the listing");
+    }
+
+    resetForm();
   };
 
   return (
     <Screen style={styles.container}>
-      <UploadScreen progress={progress} visible={uploadVisible} />
-
+      <UploadScreen
+        onDone={() => setUploadVisible(false)}
+        progress={progress}
+        visible={uploadVisible}
+      />
       <Form
         initialValues={{
           title: "",
@@ -109,11 +116,10 @@ function ListingEditScreen() {
           category: null,
           images: [],
         }}
-        onSubmit={HandleSubmit}
+        onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
-        <FormImagePicker name="images" 
-        />
+        <FormImagePicker name="images" />
         <FormField maxLength={255} name="title" placeholder="Title" />
         <FormField
           keyboardType="numeric"
