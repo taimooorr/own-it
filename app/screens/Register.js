@@ -25,6 +25,7 @@ const Register = () => {
     const auth = useAuth()
 
     const handleRegistration = async ({ email, name, password }) => {
+        console.log("Login.js: handleLogin: email: ", email)
         const response = await registerApi.request(name, email, password)
 
         if (!response.ok) {

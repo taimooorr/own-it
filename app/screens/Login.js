@@ -24,6 +24,7 @@ const Login = () => {
     const auth = useAuth()
 
     const handleLogin = async ({ email, password }) => {
+     
         const response = await loginApi.request(email, password)
 
         if (!response.ok) return setLoginError(response.data.message)
